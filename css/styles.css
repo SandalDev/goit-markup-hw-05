@@ -761,8 +761,10 @@ section {
   fill: transparent;
 }
 .check-span {
-  display: inline-flex;
+  display: inline-block;
+  vertical-align: middle;
 }
+
 .modal-check:focus + .check-text span {
   border-color: #4d5ae5;
 }
