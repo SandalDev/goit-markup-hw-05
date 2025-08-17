@@ -604,7 +604,6 @@ section {
   pointer-events: auto;
   visibility: visible;
 }
-
 .modal {
   position: absolute;
   top: 50%;
@@ -613,19 +612,17 @@ section {
   width: 408px;
   min-height: 584px;
   background: #fcfcfc;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.14), 0 1px 3px rgba(0, 0, 0, 0.12),
-    0 2px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  padding: 72px 24px 24px;
+  padding: 72px 24px 24px 24px;
 }
-
-/* close button */
 .modal-button {
+  display: flex;
   position: absolute;
   top: 24px;
   right: 24px;
-  display: inline-flex;
   width: 24px;
   height: 24px;
   border-radius: 50%;
@@ -639,20 +636,34 @@ section {
     border 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .modal-button:hover,
-.modal-button:focus-visible {
+.modal-button:focus {
   background-color: #404bbf;
   border: none;
 }
-.modal-button .modal-icon {
+/* .modal-button:hover + .modal-icon {
+  fill: #ffffff;
+  background-color: #404bbf;
+  border: none;
+} */
+.modal-button:hover > .modal-icon,
+.modal-button:focus > .modal-icon {
+  fill: #ffffff;
+  /* background-color: #404bbf;
+  border: none; */
+}
+.modal-icon {
   fill: #2e2f42;
   transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
-.modal-button:hover .modal-icon,
-.modal-button:focus-visible .modal-icon {
-  fill: #fff;
+/* .modal-icon:hover {
+  fill: #ffffff;
 }
-
-/* title/text */
+.modal-icon:focus {
+  fill: #ffffff;
+} */
+/* .modal-wrapper {
+  padding: 72px 24px 24px 24px;
+} */
 .modal-content {
   font-weight: 500;
   font-size: 16px;
@@ -662,12 +673,9 @@ section {
   color: #2e2f42;
   margin-bottom: 16px;
 }
-
-/* inputs with leading icon */
 .modal-form-input {
   margin-bottom: 8px;
 }
-
 .modal-label {
   font-size: 12px;
   line-height: 1.17;
@@ -676,12 +684,9 @@ section {
   display: block;
   margin-bottom: 4px;
 }
-
 .modal-input {
   position: relative;
 }
-
-/* text input */
 .user-input {
   width: 100%;
   height: 40px;
@@ -692,28 +697,23 @@ section {
   border-radius: 4px;
   background-color: transparent;
   padding-left: 38px;
-  outline: none; /* fix */
+  outline: transparent;
   transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .user-input:focus {
   border-color: #4d5ae5;
 }
-
-/* input icon */
 .modal-form-icon {
+  fill: #2e2f42;
   position: absolute;
   left: 16px;
   top: 50%;
   transform: translateY(-50%);
-  fill: #2e2f42;
   transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
-/* robust focus state regardless of DOM order */
-.modal-input:focus-within .modal-form-icon {
+.user-input:focus + .modal-form-icon {
   fill: #4d5ae5;
 }
-
-/* textarea */
 .modal-form-area {
   margin-bottom: 16px;
 }
@@ -728,108 +728,87 @@ section {
   border-radius: 4px;
   background-color: transparent;
   padding: 8px 16px;
-  outline: none; /* fix */
+  outline: transparent;
   resize: none;
   transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .modal-text-area:focus {
   border-color: #4d5ae5;
 }
-
-/* checkbox */
 .modal-field-check {
   margin-bottom: 24px;
 }
-
-/* скрываем нативный чекбокс, оставляя доступность */
-.modal-check {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  border: 0;
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  overflow: hidden;
-}
-
-/* подпись + кастомный бокс */
 .check-text {
-  display: inline-flex;
-  align-items: center;
   font-size: 12px;
   line-height: 1.17;
   letter-spacing: 0.04em;
   color: #8e8f99;
-  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
 }
-
-/* сам бокс перед текстом */
-.check-text .check-span {
-  display: inline-flex; /* вернул inline-flex как просили */
+.check-text span {
+  display: flex;
   width: 16px;
   height: 16px;
   border: 1px solid rgba(46, 47, 66, 0.4);
   border-radius: 2px;
   margin-right: 8px;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    border 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
   align-items: center;
   justify-content: center;
-  background-color: transparent;
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    border 250ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* иконка галочки внутри бокса */
-.check-text .check-icon {
-  width: 10px;
-  height: 8px;
   fill: transparent;
 }
+.check-span {
+  display: inline-block;
+  vertical-align: middle;
+}
 
-/* состояния */
-.modal-check:focus-visible + .check-text .check-span {
+.modal-check:focus + .check-text span {
   border-color: #4d5ae5;
 }
-.modal-check:checked + .check-text .check-span {
+.modal-check:checked + .check-text span {
   background-color: #404bbf;
-  border-color: #404bbf;
-}
-.modal-check:checked + .check-text .check-icon {
+  border: none;
   fill: #f4f4fd;
 }
-
-/* privacy link */
+.check-icon {
+  border-radius: 2px;
+  /* fill: #404bbf; */
+}
 .privacy-link {
   color: #4d5ae5;
   text-decoration: underline;
+  line-height: 1.34;
   text-decoration-skip-ink: none;
   margin-left: 4px;
-  line-height: 1.34;
 }
-
-/* submit button */
 .modal-form-button {
-  display: inline-flex; /* чтобы работали align/justify */
-  align-items: center;
-  justify-content: center;
+  display: block;
   min-width: 169px;
   height: 56px;
-  font: 500 16px/1.5 inherit;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
   letter-spacing: 0.04em;
-  color: #fff;
+  color: #ffffff;
+  cursor: pointer;
   background-color: #4d5ae5;
   border: none;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 4px;
   padding: 16px 32px;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.15);
-  margin: 0 auto;
-  cursor: pointer;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15);
+  text-align: center;
   text-decoration: none;
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
 }
 .modal-form-button:hover,
-.modal-form-button:focus-visible {
+.modal-form-button:focus {
   background-color: #404bbf;
 }
 /* ----------------  MODAL WINDOW  -------------- */
