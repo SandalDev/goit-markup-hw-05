@@ -584,7 +584,6 @@ section {
   fill: #ffffff;
 }
 /* ----------------  FOOTER  -------------- */
-
 /* ----------------  MODAL WINDOW  -------------- */
 .backdrop {
   position: fixed;
@@ -727,7 +726,7 @@ section {
   line-height: 1.17;
   letter-spacing: 0.04em;
   color: #8e8f99;
-  display: flex;
+  display: inline-flex;
   align-items: center;
 }
 .check-text span {
@@ -780,9 +779,6 @@ section {
   padding: 16px 32px;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15);
   text-align: center;
-  text-decoration: none;
-  align-items: center;
-  justify-content: center;
   margin: 0 auto;
 }
 .modal-form-button:hover,
